@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="text/javascript" src="http://PlaceHolderURL.placeholder:30845/js/sisense.js"></script>
+  <!-- replace with your Sisense server address -->
+
+  <script type="text/javascript">
+  console.log('Replace Script Url and Server URL and dashboardID in index.HTML!!!')
+    window.dashboardID = '611bdda3f918580035f12706' //replace with your dashboard id
+    window.serverURL = 'PlaceHolderURL.placeholder:30845' // replace with your Sisense server address
+    Sisense.connect(window.serverURL) // replace with your Sisense server address
+      .then((app) => {
+        window.app = app;
+
+        app.dashboards.load(window.dashboardID) //replace with your dashboard id
+          .then((dash) => {
+            window.dash = dash;
+            console.log('Loaded Sisense')
+            dash.refresh();
+
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+
+  </script>
+  <style>
+    .flex-holder {
+      display: flex;
+      justify-content: center;
+    }
+
+    .mat-card {
+      margin-left: 10px !important;
+      margin-right: 10px !important;
+    }
+
+    body {
+      background-color: lightgrey;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="sisenseApp">
+
+    <app-root widgetID="test" [widgetID]="test"></app-root>
+  </div>
+
+</body>
+
+</html>
